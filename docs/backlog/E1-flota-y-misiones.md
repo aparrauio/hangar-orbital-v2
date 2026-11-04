@@ -64,10 +64,69 @@ Como jefe de hangar, quiero registrar una nave nueva del hangar, para que quede 
 - ¿Se puede registrar una nave que entra directamente en dique seco, o siempre se registra fuera de él?
 
 ### HU-1.2 · Consultar la flota
-**Estado:** por refinar.
+**Estado:** refinada.
 
 Como jefe de hangar, quiero ver la lista de todas las naves registradas, para saber con qué naves cuenta el hangar.
-- **Alcance PRD:** A4 (parcial: la lista de naves). Mostrar si cada nave está apta y por qué es parte de E2.
+- **Alcance PRD:** A4. La regla de aptitud y sus motivos pertenecen a E2, pero ya se adelantaron en T-02 y T-03; esta historia define lo que el jefe ve y distingue en la flota.
+- **Reglas del PRD que aplican:** R1 (aptitud), R3 (asignar suma al contador) y R6 (dique seco).
+- **Spec:** [docs/specs/02-interfaz-flota.md](../specs/02-interfaz-flota.md).
+
+#### Criterios de aceptación
+1. **Todas las naves**
+   - DADO que hay varias naves registradas,
+   - CUANDO abro la flota,
+   - ENTONCES veo una entrada por cada nave, ordenadas por nombre.
+2. **Datos de cada nave**
+   - DADO una nave registrada,
+   - CUANDO la busco en la flota,
+   - ENTONCES veo su nombre, su clase, su porcentaje de combustible, sus misiones desde la última revisión junto al máximo permitido y si está operativa o en reparación.
+3. **Aptitud de un vistazo**
+   - DADO una flota con naves aptas y no aptas,
+   - CUANDO la recorro con la vista,
+   - ENTONCES cada nave indica "Apta" o "No apta" en el mismo lugar, sin que tenga que leer el resto de sus datos.
+4. **Motivos de una nave no apta**
+   - DADO una nave no apta por uno o varios motivos,
+   - CUANDO la miro en la flota,
+   - ENTONCES veo todos sus motivos escritos; una nave apta no muestra ninguno.
+5. **Combustible frente al mínimo**
+   - DADO una nave con un 10 % de combustible y otra con un 25 %,
+   - CUANDO las comparo,
+   - ENTONCES veo dónde está el mínimo y distingo que la primera no lo alcanza y que la segunda sí.
+6. **Misiones frente al máximo**
+   - DADO una nave con 2 misiones desde la última revisión y otra con 3,
+   - CUANDO las comparo,
+   - ENTONCES veo "2 de 3" en la primera, que sigue apta, y "3 de 3" en la segunda, que ya no lo está.
+7. **Nave en reparación**
+   - DADO una nave en dique seco y otra fuera de él,
+   - CUANDO las comparo,
+   - ENTONCES la primera destaca como "En reparación" y aparece como no apta con ese motivo, y la segunda indica "Operativa" sin destacar.
+8. **Estados escritos**
+   - DADO cualquier nave de la flota,
+   - CUANDO leo su aptitud y su estado,
+   - ENTONCES los dos están escritos con palabras y no tengo que interpretar ninguna otra señal para entenderlos.
+9. **Flota vacía**
+   - DADO que no hay ninguna nave registrada,
+   - CUANDO abro la flota,
+   - ENTONCES la app me avisa de que todavía no hay naves.
+10. **Flota cargando**
+    - DADO que la flota aún no ha terminado de cargar por primera vez,
+    - CUANDO la miro,
+    - ENTONCES la app me indica que está cargando y no me dice que no hay naves.
+11. **Error al cargar**
+    - DADO que la flota no se puede cargar,
+    - CUANDO abro la pantalla,
+    - ENTONCES la app me avisa del error y no me dice que no hay naves.
+12. **Flota al día tras una acción propia**
+    - DADO que tengo la flota a la vista,
+    - CUANDO registro una nave o le asigno una misión,
+    - ENTONCES la flota muestra el cambio sin que recargue la página.
+
+#### Casos borde sin cubrir
+- **Más misiones que el máximo:** una nave puede superar el máximo por datos cargados a mano o por dos asignaciones simultáneas. La spec 02 define provisionalmente cómo se muestra, a falta de que lo confirme el cliente.
+- **Cambios de otro jefe:** la flota no se actualiza sola con lo que hace otro jefe; hay que recargar la página para verlo.
+- **Combustible sin actualizar:** hasta que exista E2, una nave puede seguir como "Apta" después de volar, porque su combustible no cambia desde la app.
+- **Flota muy grande:** no se ha decidido si hace falta buscar, filtrar o paginar. El PRD no lo pide.
+- **Fallo parcial:** si se cargan las naves pero falla el conteo de una sola, la app muestra el error de toda la flota.
 
 ### HU-1.3 · Asignar una misión a una nave apta
 **Estado:** refinada.
@@ -179,7 +238,7 @@ Como jefe de hangar, quiero ver las misiones completadas de una nave, para revis
 - **Motivo:** el PRD tiene abierto si hace falta conservar el historial. No entra en el MVP hasta que se decida.
 
 ## Tickets del sprint
-Historias del sprint: HU-1.1 y HU-1.3. Según AGENTS.md, ninguna funcionalidad se implementa sin spec, así que antes de T-02 tiene que existir en `docs/specs/` la spec de las dos historias.
+Historias del sprint: HU-1.1 y HU-1.3. Según AGENTS.md, ninguna funcionalidad se implementa sin spec, así que antes de T-02 tiene que existir en `docs/specs/` la spec de las dos historias. HU-1.2 y la interfaz de los formularios se añadieron después, con los tickets T-08 a T-11 y la spec `docs/specs/02-interfaz-flota.md`.
 
 ### HU-1.1 · Registrar una nave
 
@@ -283,6 +342,64 @@ Historias del sprint: HU-1.1 y HU-1.3. Según AGENTS.md, ninguna funcionalidad s
   - [x] `npm test` y `npm run build` pasan.
 - **Dependencias:** T-06.
 
+### HU-1.2 · Consultar la flota, e interfaz de los formularios
+Detalle, criterios y archivos en la [spec 02](../specs/02-interfaz-flota.md). Ningún ticket toca `src/dominio/`, `src/services/` ni `supabase/`.
+
+#### T-08 · Tokens, base y fuentes
+**Estado:** pendiente.
+
+- **Historia:** HU-1.2 y formularios existentes.
+- **Tipo:** Configuración.
+- **Descripción:** crear los tokens y los estilos base de DESIGN.md, cargar las fuentes e importar los estilos desde `src/main.tsx`.
+- **Definition of Done:**
+  - [ ] `tokens.css` define todos los tokens de DESIGN.md §4, con sus nombres exactos.
+  - [ ] `index.html` carga las tres familias de IBM Plex con `display=swap`.
+  - [ ] La página usa el fondo, el texto y las fuentes base, y desactiva las transiciones con `prefers-reduced-motion`.
+  - [ ] D-01 y D-02 pasan: los hexadecimales solo aparecen en `tokens.css` y no hay estilos en línea.
+  - [ ] `npm test` y `npm run build` pasan.
+- **Dependencias:** spec 02.
+
+#### T-09 · Tarjeta de nave
+**Estado:** pendiente.
+
+- **Historia:** HU-1.2.
+- **Tipo:** Interfaz.
+- **Descripción:** sustituir la tabla de la flota por una lista de tarjetas de nave, con su insignia, su barra de combustible, su contador de misiones y sus motivos, y dar estilo a los estados de cargando y vacío.
+- **Definition of Done:**
+  - [ ] HU-1.2-CA1 a CA10 y CA12 se comprueban en el navegador y quedan anotados en la spec 02.
+  - [ ] D-03, D-04, D-05 y D-06 pasan.
+  - [ ] El umbral y el máximo se importan de `src/dominio/aptitud.ts`; ningún componente escribe esos valores a mano.
+  - [ ] El único `style={` de `src/` es el ancho del relleno de la barra (D-02).
+  - [ ] `npm test` y `npm run build` pasan.
+- **Dependencias:** T-08.
+
+#### T-10 · Formularios y avisos
+**Estado:** pendiente.
+
+- **Historia:** formularios de HU-1.1 y HU-1.3; aviso de error de HU-1.2.
+- **Tipo:** Interfaz.
+- **Descripción:** aplicar el campo de formulario, el botón y los avisos de DESIGN.md a los dos formularios y al error de carga de la flota, sin cambiar su comportamiento ni sus textos.
+- **Definition of Done:**
+  - [ ] HU-1.2-CA11 se comprueba en el navegador y queda anotado en la spec 02.
+  - [ ] D-07 y D-08 pasan.
+  - [ ] Cada campo con error enlaza su mensaje con `aria-describedby`.
+  - [ ] El botón deshabilitado al enviar conserva su texto y su ancho.
+  - [ ] `npm test` y `npm run build` pasan.
+- **Dependencias:** T-08.
+
+#### T-11 · Layout del tablero
+**Estado:** pendiente.
+
+- **Historia:** HU-1.2 y formularios existentes.
+- **Tipo:** Interfaz.
+- **Descripción:** montar el encabezado, los paneles y el tablero de DESIGN.md §5, con la grilla de la flota y la versión de una columna.
+- **Definition of Done:**
+  - [ ] D-09 pasa a 1280 px y a 390 px.
+  - [ ] D-01, D-02 y D-10 pasan sobre la pantalla completa.
+  - [ ] La tabla de verificación de la spec 02 tiene anotado el resultado de todas sus filas.
+  - [ ] `npm test` y `npm run build` pasan.
+- **Dependencias:** T-09 y T-10.
+
 ### Orden de ejecución sugerido
 1. **Antes de empezar:** la spec de HU-1.1 y HU-1.3 en `docs/specs/`.
 2. **T-01:** preparar el proyecto.
@@ -291,5 +408,8 @@ Historias del sprint: HU-1.1 y HU-1.3. Según AGENTS.md, ninguna funcionalidad s
 5. **T-04:** verificar HU-1.1. Así queda cerrada la primera historia.
 6. **T-06:** guardar y mostrar la misión.
 7. **T-07:** verificar HU-1.3.
+8. **T-08:** tokens, base y fuentes.
+9. **T-09 y T-10 en paralelo.** Solo coinciden en `src/components/ListaNaves.tsx` y en la lista de importaciones de `src/main.tsx`.
+10. **T-11:** layout del tablero y comprobación final.
 
 Para preparar las naves de prueba de T-07, hace falta cambiar a mano el contador de misiones y el dique seco, porque las pantallas que hacen eso son de E2.
