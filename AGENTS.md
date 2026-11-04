@@ -14,8 +14,10 @@ App web para registrar las naves de un hangar, asignarles misiones y saber cuál
 - `src/dominio/`: funciones puras y sus tests
 - `src/services/`: acceso a Supabase
 - `src/components/`: componentes de React
+- `src/styles/`: estilos y tokens
 - `supabase/migraciones/`: migraciones SQL
 - `docs/prd/`, `docs/backlog/`, `docs/specs/`: documentación
+- `docs/diseno/`: material de diseño
 
 ## Comandos
 - `npm run dev`: servidor de desarrollo
@@ -34,3 +36,4 @@ App web para registrar las naves de un hangar, asignarles misiones y saber cuál
 - En el frontend solo va la clave pública (anon o publishable), nunca la `service_role`.
 - Ninguna funcionalidad se implementa sin una spec en `docs/specs/`.
 - Ejecutar `npm test` y `npm run build` antes de dar una tarea por terminada.
+- Para cualquier tarea visual, lee DESIGN.md antes de escribir código: ahí están los tokens, los componentes y las reglas de estilo.
