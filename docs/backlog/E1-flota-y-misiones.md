@@ -346,7 +346,7 @@ Historias del sprint: HU-1.1 y HU-1.3. Según AGENTS.md, ninguna funcionalidad s
 Detalle, criterios y archivos en la [spec 02](../specs/02-interfaz-flota.md). Ningún ticket toca `src/dominio/`, `src/services/` ni `supabase/`.
 
 #### T-08 · Tokens, base y fuentes
-**Estado:** hecho.
+**Estado:** pendiente: el código está hecho, pero faltan los resultados del navegador en `docs/VERIFICACION-UI.md`.
 
 - **Historia:** HU-1.2 y formularios existentes.
 - **Tipo:** Configuración.
@@ -354,49 +354,49 @@ Detalle, criterios y archivos en la [spec 02](../specs/02-interfaz-flota.md). Ni
 - **Definition of Done:**
   - [x] `tokens.css` define todos los tokens de DESIGN.md §4, con sus nombres exactos.
   - [x] `index.html` carga las tres familias de IBM Plex con `display=swap`.
-  - [x] La página usa el fondo, el texto y las fuentes base, y desactiva las transiciones con `prefers-reduced-motion`.
+  - [ ] La página usa el fondo, el texto y las fuentes base, y desactiva las transiciones con `prefers-reduced-motion`. *(Implementado; filas T-08 sin resultado.)*
   - [x] D-01 y D-02 pasan: los hexadecimales solo aparecen en `tokens.css` y no hay estilos en línea.
   - [x] `npm test` y `npm run build` pasan.
 - **Dependencias:** spec 02.
 
 #### T-09 · Tarjeta de nave
-**Estado:** hecho.
+**Estado:** pendiente: el código está hecho, pero faltan los resultados del navegador en `docs/VERIFICACION-UI.md`.
 
 - **Historia:** HU-1.2.
 - **Tipo:** Interfaz.
 - **Descripción:** sustituir la tabla de la flota por una lista de tarjetas de nave, con su insignia, su barra de combustible, su contador de misiones y sus motivos, y dar estilo a los estados de cargando y vacío.
 - **Definition of Done:**
-  - [x] HU-1.2-CA1 a CA10 y CA12 se comprueban en el navegador y quedan anotados en la spec 02.
-  - [x] D-03, D-04, D-05 y D-06 pasan.
+  - [ ] HU-1.2-CA1 a CA10 y CA12 se comprueban en el navegador y quedan anotados en la spec 02. *(Solo hay una confirmación general, sin detalle por criterio.)*
+  - [ ] D-03, D-04, D-05 y D-06 pasan. *(Implementado; filas sin resultado.)*
   - [x] El umbral y el máximo se importan de `src/dominio/aptitud.ts`; ningún componente escribe esos valores a mano.
   - [x] El único `style={` de `src/` es el ancho del relleno de la barra (D-02).
   - [x] `npm test` y `npm run build` pasan.
 - **Dependencias:** T-08.
 
 #### T-10 · Formularios y avisos
-**Estado:** hecho.
+**Estado:** pendiente: el código está hecho, pero faltan los resultados del navegador en `docs/VERIFICACION-UI.md`.
 
 - **Historia:** formularios de HU-1.1 y HU-1.3; aviso de error de HU-1.2.
 - **Tipo:** Interfaz.
 - **Descripción:** aplicar el campo de formulario, el botón y los avisos de DESIGN.md a los dos formularios y al error de carga de la flota, sin cambiar su comportamiento ni sus textos.
 - **Definition of Done:**
-  - [x] HU-1.2-CA11 se comprueba en el navegador y queda anotado en la spec 02.
-  - [x] D-07 y D-08 pasan.
+  - [ ] HU-1.2-CA11 se comprueba en el navegador y queda anotado en la spec 02. *(Solo hay una confirmación general, sin detalle por criterio.)*
+  - [ ] D-07 y D-08 pasan. *(Implementado; filas sin resultado.)*
   - [x] Cada campo con error enlaza su mensaje con `aria-describedby`.
-  - [x] El botón deshabilitado al enviar conserva su texto y su ancho.
+  - [ ] El botón deshabilitado al enviar conserva su texto y su ancho. *(Implementado; fila sin resultado.)*
   - [x] `npm test` y `npm run build` pasan.
 - **Dependencias:** T-08.
 
 #### T-11 · Layout del tablero
-**Estado:** hecho.
+**Estado:** pendiente: el código está hecho, pero faltan los resultados del navegador en `docs/VERIFICACION-UI.md` y en `docs/VERIFICACION.md`.
 
 - **Historia:** HU-1.2 y formularios existentes.
 - **Tipo:** Interfaz.
 - **Descripción:** montar el encabezado, los paneles y el tablero de DESIGN.md §5, con la grilla de la flota y la versión de una columna.
 - **Definition of Done:**
   - [x] D-09 pasa a 1280 px y a 390 px.
-  - [x] D-01, D-02 y D-10 pasan sobre la pantalla completa.
-  - [x] La tabla de verificación de la spec 02 tiene anotado el resultado de todas sus filas. *(Las de navegador, como confirmación general del usuario, sin detalle por criterio.)*
+  - [ ] D-01, D-02 y D-10 pasan sobre la pantalla completa. *(D-01 y D-02 pasan; D-10 sin resultado.)*
+  - [ ] La tabla de verificación de la spec 02 tiene anotado el resultado de todas sus filas. *(37 de 39 filas de `docs/VERIFICACION-UI.md` siguen vacías.)*
   - [x] `npm test` y `npm run build` pasan.
 - **Dependencias:** T-09 y T-10.
 
