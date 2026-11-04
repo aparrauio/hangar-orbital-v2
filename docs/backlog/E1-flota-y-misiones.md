@@ -346,58 +346,58 @@ Historias del sprint: HU-1.1 y HU-1.3. Según AGENTS.md, ninguna funcionalidad s
 Detalle, criterios y archivos en la [spec 02](../specs/02-interfaz-flota.md). Ningún ticket toca `src/dominio/`, `src/services/` ni `supabase/`.
 
 #### T-08 · Tokens, base y fuentes
-**Estado:** pendiente.
+**Estado:** hecho.
 
 - **Historia:** HU-1.2 y formularios existentes.
 - **Tipo:** Configuración.
 - **Descripción:** crear los tokens y los estilos base de DESIGN.md, cargar las fuentes e importar los estilos desde `src/main.tsx`.
 - **Definition of Done:**
-  - [ ] `tokens.css` define todos los tokens de DESIGN.md §4, con sus nombres exactos.
-  - [ ] `index.html` carga las tres familias de IBM Plex con `display=swap`.
-  - [ ] La página usa el fondo, el texto y las fuentes base, y desactiva las transiciones con `prefers-reduced-motion`.
-  - [ ] D-01 y D-02 pasan: los hexadecimales solo aparecen en `tokens.css` y no hay estilos en línea.
-  - [ ] `npm test` y `npm run build` pasan.
+  - [x] `tokens.css` define todos los tokens de DESIGN.md §4, con sus nombres exactos.
+  - [x] `index.html` carga las tres familias de IBM Plex con `display=swap`.
+  - [x] La página usa el fondo, el texto y las fuentes base, y desactiva las transiciones con `prefers-reduced-motion`.
+  - [x] D-01 y D-02 pasan: los hexadecimales solo aparecen en `tokens.css` y no hay estilos en línea.
+  - [x] `npm test` y `npm run build` pasan.
 - **Dependencias:** spec 02.
 
 #### T-09 · Tarjeta de nave
-**Estado:** pendiente.
+**Estado:** hecho.
 
 - **Historia:** HU-1.2.
 - **Tipo:** Interfaz.
 - **Descripción:** sustituir la tabla de la flota por una lista de tarjetas de nave, con su insignia, su barra de combustible, su contador de misiones y sus motivos, y dar estilo a los estados de cargando y vacío.
 - **Definition of Done:**
-  - [ ] HU-1.2-CA1 a CA10 y CA12 se comprueban en el navegador y quedan anotados en la spec 02.
-  - [ ] D-03, D-04, D-05 y D-06 pasan.
-  - [ ] El umbral y el máximo se importan de `src/dominio/aptitud.ts`; ningún componente escribe esos valores a mano.
-  - [ ] El único `style={` de `src/` es el ancho del relleno de la barra (D-02).
-  - [ ] `npm test` y `npm run build` pasan.
+  - [x] HU-1.2-CA1 a CA10 y CA12 se comprueban en el navegador y quedan anotados en la spec 02.
+  - [x] D-03, D-04, D-05 y D-06 pasan.
+  - [x] El umbral y el máximo se importan de `src/dominio/aptitud.ts`; ningún componente escribe esos valores a mano.
+  - [x] El único `style={` de `src/` es el ancho del relleno de la barra (D-02).
+  - [x] `npm test` y `npm run build` pasan.
 - **Dependencias:** T-08.
 
 #### T-10 · Formularios y avisos
-**Estado:** pendiente.
+**Estado:** hecho.
 
 - **Historia:** formularios de HU-1.1 y HU-1.3; aviso de error de HU-1.2.
 - **Tipo:** Interfaz.
 - **Descripción:** aplicar el campo de formulario, el botón y los avisos de DESIGN.md a los dos formularios y al error de carga de la flota, sin cambiar su comportamiento ni sus textos.
 - **Definition of Done:**
-  - [ ] HU-1.2-CA11 se comprueba en el navegador y queda anotado en la spec 02.
-  - [ ] D-07 y D-08 pasan.
-  - [ ] Cada campo con error enlaza su mensaje con `aria-describedby`.
-  - [ ] El botón deshabilitado al enviar conserva su texto y su ancho.
-  - [ ] `npm test` y `npm run build` pasan.
+  - [x] HU-1.2-CA11 se comprueba en el navegador y queda anotado en la spec 02.
+  - [x] D-07 y D-08 pasan.
+  - [x] Cada campo con error enlaza su mensaje con `aria-describedby`.
+  - [x] El botón deshabilitado al enviar conserva su texto y su ancho.
+  - [x] `npm test` y `npm run build` pasan.
 - **Dependencias:** T-08.
 
 #### T-11 · Layout del tablero
-**Estado:** pendiente.
+**Estado:** hecho.
 
 - **Historia:** HU-1.2 y formularios existentes.
 - **Tipo:** Interfaz.
 - **Descripción:** montar el encabezado, los paneles y el tablero de DESIGN.md §5, con la grilla de la flota y la versión de una columna.
 - **Definition of Done:**
-  - [ ] D-09 pasa a 1280 px y a 390 px.
-  - [ ] D-01, D-02 y D-10 pasan sobre la pantalla completa.
-  - [ ] La tabla de verificación de la spec 02 tiene anotado el resultado de todas sus filas.
-  - [ ] `npm test` y `npm run build` pasan.
+  - [x] D-09 pasa a 1280 px y a 390 px.
+  - [x] D-01, D-02 y D-10 pasan sobre la pantalla completa.
+  - [x] La tabla de verificación de la spec 02 tiene anotado el resultado de todas sus filas. *(Las de navegador, como confirmación general del usuario, sin detalle por criterio.)*
+  - [x] `npm test` y `npm run build` pasan.
 - **Dependencias:** T-09 y T-10.
 
 ### Orden de ejecución sugerido

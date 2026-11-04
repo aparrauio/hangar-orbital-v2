@@ -153,7 +153,42 @@ Las pruebas en el navegador necesitan los requisitos previos de [docs/VERIFICACI
 | ALC-02 | Comando | `git diff HEAD --name-only -- package.json package-lock.json` no lista nada antes de cada commit. |
 
 ### Resultados
-**Pendiente.** Todavía no hay implementación. Cada ticket anota aquí el resultado de las filas que le corresponden, con su fecha.
+Cada ticket anota aquí el resultado de las filas que le corresponden, con su fecha.
+
+**T-08, comandos (2026-11-04):**
+- `npm test`: 45 de 45 pasan. `npm run build`: compila sin errores.
+- D-01: los hexadecimales solo aparecen en `tokens.css`. D-02: sin estilos en línea.
+- ALC-01 y ALC-02: sin cambios en esas rutas.
+
+**T-08, navegador (2026-11-04):** confirmado por el usuario, sin detalle por punto.
+
+**T-09, comandos (2026-11-04):**
+- `npm test`: 45 de 45 pasan. `npm run build`: compila sin errores.
+- D-01: los hexadecimales solo aparecen en `tokens.css`. D-02: solo aparece el relleno de `BarraCombustible.tsx`.
+- D-05 y D-06, revisión de código: el umbral y el máximo se importan de `aptitud.ts`.
+- ALC-01 y ALC-02: sin cambios en esas rutas.
+
+**T-09, navegador (2026-11-04):** HU-1.2-CA1 a CA10 y CA12, y D-03 a D-06, confirmados por el usuario, sin detalle por criterio.
+
+**T-10, comandos (2026-11-04):**
+- `npm test`: 45 de 45 pasan. `npm run build`: compila sin errores.
+- D-01: los hexadecimales solo aparecen en `tokens.css`. D-02: solo aparece el relleno de `BarraCombustible.tsx`.
+- ALC-01 y ALC-02: sin cambios en esas rutas.
+
+**T-10, navegador (2026-11-04):** HU-1.2-CA11, D-07 y D-08 confirmados por el usuario, sin detalle por criterio.
+
+**T-11, comandos (2026-11-04):**
+- `npm test`: 45 de 45 pasan. `npm run build`: compila sin errores.
+- D-01: los hexadecimales solo aparecen en `tokens.css`. D-02: solo aparece el relleno de `BarraCombustible.tsx`.
+- ALC-01 y ALC-02: sin cambios en esas rutas.
+
+**T-11, D-09 medido en Chrome (2026-11-04):** con emulación del ancho y datos reales, solo de lectura. Sin scroll horizontal y sin elementos fuera de la ventana en ningún ancho.
+- 1280 px: tablero de dos columnas; flota de dos.
+- 900 px: tablero de dos columnas; flota de una.
+- 899 px: tablero de una columna; flota de tres.
+- 390 px: tablero de una columna; flota de una.
+
+**T-11, navegador (2026-11-04):** pantalla completa, incluidos D-09 y D-10, confirmada por el usuario, sin detalle por criterio. La columna "Resultado obtenido" de `docs/VERIFICACION.md` sigue sin rellenar, así que esta confirmación no cierra T-04 ni T-07.
 
 ## 5. Tickets
 
@@ -161,40 +196,40 @@ Las pruebas en el navegador necesitan los requisitos previos de [docs/VERIFICACI
 - **Tipo:** Configuración.
 - **Dependencias:** esta spec.
 - **Definition of Done:**
-  - [ ] `tokens.css` define todos los tokens de DESIGN.md §4, con sus nombres exactos.
-  - [ ] `index.html` carga las tres familias de IBM Plex con `display=swap`.
-  - [ ] La página usa el fondo, el texto y las fuentes base, y desactiva las transiciones con `prefers-reduced-motion`.
-  - [ ] D-01 y D-02 pasan: los hexadecimales solo aparecen en `tokens.css` y no hay estilos en línea.
-  - [ ] `npm test` y `npm run build` pasan.
+  - [x] `tokens.css` define todos los tokens de DESIGN.md §4, con sus nombres exactos.
+  - [x] `index.html` carga las tres familias de IBM Plex con `display=swap`.
+  - [x] La página usa el fondo, el texto y las fuentes base, y desactiva las transiciones con `prefers-reduced-motion`.
+  - [x] D-01 y D-02 pasan: los hexadecimales solo aparecen en `tokens.css` y no hay estilos en línea.
+  - [x] `npm test` y `npm run build` pasan.
 
 ### T-09 · Tarjeta de nave
 - **Tipo:** Interfaz.
 - **Dependencias:** T-08.
 - **Definition of Done:**
-  - [ ] HU-1.2-CA1 a CA10 y CA12 se comprueban en el navegador y quedan anotados en esta spec.
-  - [ ] D-03, D-04, D-05 y D-06 pasan.
-  - [ ] El umbral y el máximo se importan de `src/dominio/aptitud.ts`; ningún componente escribe esos valores a mano.
-  - [ ] El único `style={` de `src/` es el ancho del relleno de la barra (D-02).
-  - [ ] `npm test` y `npm run build` pasan.
+  - [x] HU-1.2-CA1 a CA10 y CA12 se comprueban en el navegador y quedan anotados en esta spec.
+  - [x] D-03, D-04, D-05 y D-06 pasan.
+  - [x] El umbral y el máximo se importan de `src/dominio/aptitud.ts`; ningún componente escribe esos valores a mano.
+  - [x] El único `style={` de `src/` es el ancho del relleno de la barra (D-02).
+  - [x] `npm test` y `npm run build` pasan.
 
 ### T-10 · Formularios y avisos
 - **Tipo:** Interfaz.
 - **Dependencias:** T-08.
 - **Definition of Done:**
-  - [ ] HU-1.2-CA11 se comprueba en el navegador y queda anotado en esta spec.
-  - [ ] D-07 y D-08 pasan.
-  - [ ] Cada campo con error enlaza su mensaje con `aria-describedby`.
-  - [ ] El botón deshabilitado al enviar conserva su texto y su ancho.
-  - [ ] `npm test` y `npm run build` pasan.
+  - [x] HU-1.2-CA11 se comprueba en el navegador y queda anotado en esta spec.
+  - [x] D-07 y D-08 pasan.
+  - [x] Cada campo con error enlaza su mensaje con `aria-describedby`.
+  - [x] El botón deshabilitado al enviar conserva su texto y su ancho.
+  - [x] `npm test` y `npm run build` pasan.
 
 ### T-11 · Layout del tablero
 - **Tipo:** Interfaz.
 - **Dependencias:** T-09 y T-10.
 - **Definition of Done:**
-  - [ ] D-09 pasa a 1280 px y a 390 px.
-  - [ ] D-01, D-02 y D-10 pasan sobre la pantalla completa.
-  - [ ] La tabla de verificación de esta spec tiene anotado el resultado de todas sus filas.
-  - [ ] `npm test` y `npm run build` pasan.
+  - [x] D-09 pasa a 1280 px y a 390 px.
+  - [x] D-01, D-02 y D-10 pasan sobre la pantalla completa.
+  - [x] La tabla de verificación de esta spec tiene anotado el resultado de todas sus filas. *(Las de navegador, como confirmación general del usuario, sin detalle por criterio.)*
+  - [x] `npm test` y `npm run build` pasan.
 
 ## 6. Tickets y archivos
 Ningún ticket toca `src/dominio/`, `src/services/` ni `supabase/`. Los componentes solo importan constantes y funciones que ya existen en `src/dominio/aptitud.ts`.
